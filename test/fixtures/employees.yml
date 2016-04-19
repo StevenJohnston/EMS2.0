@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lastName: MyString
+  firstName: MyString
+  sin: MyString
+  dateOfBirth: 2016-04-19
+  reasonForLeaving: MyText
+  company_id: 
+
+two:
+  lastName: MyString
+  firstName: MyString
+  sin: MyString
+  dateOfBirth: 2016-04-19
+  reasonForLeaving: MyText
+  company_id: 

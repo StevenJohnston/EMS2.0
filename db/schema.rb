@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419034648) do
+ActiveRecord::Schema.define(version: 20160419082134) do
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string   "lastName",         limit: 255
+    t.string   "firstName",        limit: 255
+    t.string   "sin",              limit: 255
+    t.date     "dateOfBirth"
+    t.text     "reasonForLeaving", limit: 65535
+    t.integer  "company_id",       limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "employees", ["company_id"], name: "index_employees_on_company_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -22,4 +42,5 @@ ActiveRecord::Schema.define(version: 20160419034648) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_foreign_key "employees", "companies"
 end

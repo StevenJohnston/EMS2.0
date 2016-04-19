@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EMS</title>
+<title>EMS</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div id="user_header">
-   <% if current_user %>
-  Logged in as <%= current_user.email %>.
-   <%= link_to "Log Out", logout_path %>
-   <%= link_to "Create Account", signup_path %>
-   <% elsif (!current_page? (login_path)) && (!current_page? ('/')) %>
-   <%= link_to "Log In", login_path %>
-   <% end %>
+    <% if current_user %>
+      Logged in as <%= current_user.email %>.
+      <%= link_to "Log Out", logout_path %>
+      <div id="Tables">
+        <%= link_to "Create Account", signup_path %>
+        <%= link_to "Companies", companies_path%>
+      </div>
+    <% elsif (!current_page? (login_path)) && (!current_page? ('/')) %>
+      <%= link_to "Log In", login_path %>
+    <% end %>
   </div>
   <% flash.each do |key, value| %>
-   <%= content_tag(:div, class: "alert alert-#{key}") do %>
-  <p><%= value %></p>
-   <% end %>
+    <%= content_tag(:div, class: "alert alert-#{key}") do %>
+      <p><%= value %></p>
+    <% end %>
   <% end %>
-<%= yield %>
-
+  <%= yield %>
 </body>
 </html>

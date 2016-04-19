@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :userType %><br>
-    <%= f.text_field :userType %>
+    <%= select_tag 'user[userType]', options_for_select([["General" , "General" ],["Admin","Admin"]] + @userTypes.to_a,:selected=>'Admin') %>
   </div>
   <div class="actions">
     <%= f.submit %>

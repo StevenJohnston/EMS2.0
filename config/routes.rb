@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :employees
+  resources :companies
+
+  
+
   get 'sessions/new'
-
   get 'sessions/create'
-
   get 'sessions/destroy'
 
   resources :sessions, only: [:new, :create, :destroy]
