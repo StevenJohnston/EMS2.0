@@ -1,14 +1,31 @@
-<h1>Log In</h1>
 <%= form_tag sessions_path do %>
-<div class="field">
-<%= label_tag :email %><br>
-<%= text_field_tag :email %>
+<div class="jumbotron vertical-center">
+    <div class="container">
+      <div class="row">
+
+          <h1 id="mainTitle">Welcome to EMS-PSS</h1>
+
+          <!-- Login Form -->
+          <div class="loginHeader">
+              <p>Login Account</p>
+          </div>
+
+          <form role="form">
+              <div class="form-group">
+                <%= label_tag :email %><br>
+                <%= text_field_tag :email, '',class: 'form-control', placeholder: 'Email' %>
+              </div>
+              <div class="form-group">
+                  <%= label_tag :password %><br>
+                  <%= password_field_tag :password, '', class:'form-control',placeholder: 'Password' %>
+              </div>
+              <%= submit_tag "Log In", class: "btn btn-default" %>
+              <!-- <p style="display:inline">*Username or password was typed in incorrectly!</p> -->
+          </form>
+      </div> <!-- End of login row -->
+  </div>
+
+
 </div>
-  <div class="field">
-    <%= label_tag :password %><br>
-<%= password_field_tag :password %>
-</div>
-  <div class="actions">
-    <%= submit_tag "Log In" %>
-</div>
+
 <% end %>
