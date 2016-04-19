@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   resources :users
   get 'page/index'
-  root 'page#index'
+  root 'sessions#new'
 end
