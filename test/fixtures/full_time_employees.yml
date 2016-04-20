@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dateOfHire: 2016-04-19
+  dateofTermination: 2016-04-19
+  salary: 9.99
+  employee_id: 
+
+two:
+  dateOfHire: 2016-04-19
+  dateofTermination: 2016-04-19
+  salary: 9.99
+  employee_id: 

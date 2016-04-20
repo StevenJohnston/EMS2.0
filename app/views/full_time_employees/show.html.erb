@@ -1,0 +1,46 @@
+<p>
+  <strong>Company Name:</strong>
+  <%= @full_time_employee.employee.company.name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @full_time_employee.employee.lastName %>
+</p>
+<p>
+  <strong>First Name:</strong>
+  <%= @full_time_employee.employee.firstName %>
+</p>
+<p>
+  <strong>Social Insurance Number:</strong>
+  <%= @full_time_employee.employee.sin %>
+</p>
+<p>
+  <strong>Date of Birth</strong>
+  <%= @full_time_employee.employee.dateOfBirth %>
+</p>
+
+<p>
+  <strong>Dateofhire:</strong>
+  <%= @full_time_employee.dateOfHire %>
+</p>
+
+<p>
+  <strong>Dateoftermination:</strong>
+  <%= @full_time_employee.dateofTermination %>
+</p>
+
+<p>
+  <strong>Salary:</strong>
+  <%= @full_time_employee.salary %>
+</p>
+
+<p>
+  <strong>Reason for Leaving:</strong>
+  <%= @full_time_employee.employee.reasonForLeaving %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_full_time_employee_path(@full_time_employee) %> |
+<%= link_to 'Back', full_time_employees_path %>

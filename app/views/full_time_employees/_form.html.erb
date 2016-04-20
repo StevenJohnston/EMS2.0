@@ -1,0 +1,84 @@
+<%= form_for(@full_time_employee) do |f| %>
+  <% if @full_time_employee.errors.any? || @employee.errors.any?%>
+    <div id="error_explanation">
+      <h2><%= pluralize(@full_time_employee.errors.count + @employee.errors.count, "error") %> prohibited this full_time_employee from being saved:</h2>
+
+      <ul>
+      <% @full_time_employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= fields_for(@employee) do |u| %>
+      <div class="field">
+        <%= u.label :lastName %><br>
+        <%= u.text_field :lastName %>
+        <% @employee.errors[:lastName].each do |e|%>
+            <%= e%>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= u.label :firstName %><br>
+        <%= u.text_field :firstName %>
+        <% @employee.errors[:firstName].each do |e|%>
+            <%= e%>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= u.label :sin %><br>
+        <%= u.text_field :sin %>
+        <% @employee.errors[:sin].each do |e|%>
+            <%= e%>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= u.label :dateOfBirth %><br>
+        <%= u.date_select :dateOfBirth %>
+        <% @employee.errors[:dateOfBirth].each do |e|%>
+            <%= e%>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= u.label :reasonForLeaving %><br>
+        <%= u.text_area :reasonForLeaving %>
+        <% @employee.errors[:reasonForLeaving].each do |e|%>
+            <%= e%>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= u.label :company_id %><br>
+        <%= collection_select(:employee, :company_id, Company.all, :id, :name) %>
+        <% @employee.errors[:company_id].each do |e|%>
+            <%= e%>
+        <% end %>
+      </div>
+   <% end %>
+
+
+  <div class="field">
+    <%= f.label :dateOfHire %><br>
+    <%= f.date_select :dateOfHire %>
+    <% @full_time_employee.errors[:dateOfHire].each do |e|%>
+        <%= e%>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :dateofTermination %><br>
+    <%= f.date_select :dateofTermination %>
+    <% @full_time_employee.errors[:dateofTermination].each do |e|%>
+        <%= e%>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :salary %><br>
+    <%= f.text_field :salary %>
+    <% @full_time_employee.errors[:salary].each do |e|%>
+        <%= e%>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
