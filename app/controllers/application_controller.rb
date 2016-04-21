@@ -18,4 +18,5 @@ class ApplicationController < ActionController::Base
     return current_user && current_user.userType == "General"
   end
   helper_method :isAdmin
+  helper_method :isGeneral
 end

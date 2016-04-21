@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421025231) do
+ActiveRecord::Schema.define(version: 20160421071339) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -49,6 +49,44 @@ ActiveRecord::Schema.define(version: 20160421025231) do
   add_index "full_time_employees", ["employee_id"], name: "index_full_time_employees_on_employee_id", using: :btree
   add_index "full_time_employees", ["full_time_employees_id"], name: "index_full_time_employees_on_full_time_employees_id", using: :btree
 
+  create_table "logs", force: :cascade do |t|
+    t.text     "employeeInfo",   limit: 65535
+    t.text     "additionalInfo", limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "CRUD",           limit: 255
+    t.string   "table",          limit: 255
+    t.string   "who",            limit: 255
+  end
+
+  create_table "part_time_employees", force: :cascade do |t|
+    t.date     "dateOfHire"
+    t.date     "dateOfTermination"
+    t.decimal  "hourlyRate",                       precision: 10
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+    t.integer  "part_time_employees_id", limit: 4
+    t.boolean  "verified",                                        default: false
+    t.integer  "employee_id",            limit: 4
+  end
+
+  add_index "part_time_employees", ["employee_id"], name: "index_part_time_employees_on_employee_id", using: :btree
+  add_index "part_time_employees", ["part_time_employees_id"], name: "index_part_time_employees_on_part_time_employees_id", using: :btree
+
+  create_table "seasonals", force: :cascade do |t|
+    t.string   "season",       limit: 255
+    t.integer  "seasonYear",   limit: 4
+    t.decimal  "piecePay",                 precision: 10
+    t.integer  "employee_id",  limit: 4
+    t.boolean  "verified"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "seasonals_id", limit: 4
+  end
+
+  add_index "seasonals", ["employee_id"], name: "index_seasonals_on_employee_id", using: :btree
+  add_index "seasonals", ["seasonals_id"], name: "index_seasonals_on_seasonals_id", using: :btree
+
   create_table "time_cards", force: :cascade do |t|
     t.date     "dateOf"
     t.decimal  "sunday",                precision: 10
@@ -76,4 +114,5 @@ ActiveRecord::Schema.define(version: 20160421025231) do
 
   add_foreign_key "employees", "companies"
   add_foreign_key "full_time_employees", "employees"
+  add_foreign_key "seasonals", "employees"
 end

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @seasonal.season %>
+</p>
+
+<p>
+  <strong>Seasonyear:</strong>
+  <%= @seasonal.seasonYear %>
+</p>
+
+<p>
+  <strong>Piecepay:</strong>
+  <%= @seasonal.piecePay %>
+</p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @seasonal.employee %>
+</p>
+
+<p>
+  <strong>Verified:</strong>
+  <%= @seasonal.verified %>
+</p>
+
+<%= link_to 'Edit', edit_seasonal_path(@seasonal) %> |
+<%= link_to 'Back', seasonals_path %>

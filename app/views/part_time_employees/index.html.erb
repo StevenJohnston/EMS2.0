@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Part Time Employees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dateofhire</th>
+      <th>Dateoftermination</th>
+      <th>Hourlyrate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @part_time_employees.each do |part_time_employee| %>
+      <tr>
+        <td><%= part_time_employee.dateOfHire %></td>
+        <td><%= part_time_employee.dateOfTermination %></td>
+        <td><%= part_time_employee.hourlyRate %></td>
+        <td><%= link_to 'Show', part_time_employee %></td>
+        <td><%= link_to 'Edit', edit_part_time_employee_path(part_time_employee) %></td>
+        <td><%= link_to 'Destroy', part_time_employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Part time employee', new_part_time_employee_path %>

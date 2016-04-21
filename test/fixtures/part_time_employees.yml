@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dateOfHire: 2016-04-21
+  dateOfTermination: 2016-04-21
+  hourlyRate: 9.99
+
+two:
+  dateOfHire: 2016-04-21
+  dateOfTermination: 2016-04-21
+  hourlyRate: 9.99

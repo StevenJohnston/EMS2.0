@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to :controller => 'home', :action => 'index'
+      redirect_to :controller => 'homes', :action => 'index'
     else
       render :new
     end

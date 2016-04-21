@@ -14,7 +14,7 @@ class FullTimeEmployeesController < ApplicationController
   # GET /full_time_employees/1
   # GET /full_time_employees/1.json
   def show
-    @full_time_employee = FullTimeEmployee.find(params[:id])
+    #@full_time_employee = FullTimeEmployee.find(params[:id])
   end
 
   # GET /full_time_employees/new
@@ -46,6 +46,13 @@ class FullTimeEmployeesController < ApplicationController
                 @full_time_employee.employee = Employee.find(@employee.id)
               format.json { render :show, status: :created, location: @employee }
                 if @full_time_employee.save
+                  @logs = Log.new
+                  @logs.employeeInfo = @employee.to_json
+                  @logs.additionalInfo = @full_time_employee.to_json
+                  @logs.CRUD = "Create"
+                  @logs.table = "Full Time Employee"
+                  @logs.who = current_user.name
+                  @logs.save
                   format.html { redirect_to @full_time_employee, notice: 'Full time employee was successfully created.' }
                   format.json { render :show, status: :created, location: @full_time_employee }
                 end
@@ -97,6 +104,13 @@ class FullTimeEmployeesController < ApplicationController
             @full_time_employee.destroy
             @employee.destroy
           else
+            @logs = Log.new
+            @logs.employeeInfo = @employee.to_json
+            @logs.additionalInfo = @full_time_employee.to_json
+            @logs.CRUD = "Update"
+            @logs.table = "Full Time Employee"
+            @logs.who = current_user.name
+            @logs.save
             @employee.save
             @full_time_employee.save
           end
@@ -129,6 +143,13 @@ class FullTimeEmployeesController < ApplicationController
               if @employee.save
                   @full_time_employee.employee = Employee.find(@employee.id)
                 format.json { render :show, status: :created, location: @employee }
+                @logs = Log.new
+                @logs.employeeInfo = @employee.to_json
+                @logs.additionalInfo = @full_time_employee.to_json
+                @logs.CRUD = "Update"
+                @logs.table = "Full Time Employee"
+                @logs.who = current_user.name
+                @logs.save
                   if @full_time_employee.save
                     format.html { redirect_to @full_time_employee, notice: 'Full time employee was successfully created.' }
                     format.json { render :show, status: :created, location: @full_time_employee }

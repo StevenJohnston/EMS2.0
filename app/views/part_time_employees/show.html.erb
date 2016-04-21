@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dateofhire:</strong>
+  <%= @part_time_employee.dateOfHire %>
+</p>
+
+<p>
+  <strong>Dateoftermination:</strong>
+  <%= @part_time_employee.dateOfTermination %>
+</p>
+
+<p>
+  <strong>Hourlyrate:</strong>
+  <%= @part_time_employee.hourlyRate %>
+</p>
+
+<%= link_to 'Edit', edit_part_time_employee_path(@part_time_employee) %> |
+<%= link_to 'Back', part_time_employees_path %>
