@@ -1,0 +1,2 @@
+module ContractEmployeesHelper
+end

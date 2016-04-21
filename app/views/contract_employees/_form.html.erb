@@ -1,10 +1,10 @@
-<%= form_for(@seasonal) do |f| %>
-  <% if @seasonal.errors.any? || @employee.errors.any?%>
+<%= form_for(@contract_employee) do |f| %>
+  <% if @contract_employee.errors.any? || @employee.errors.any?%>
     <div id="error_explanation">
-      <h2><%= pluralize(@seasonal.errors.count + @employee.errors.count, "error") %> prohibited this seasonal from being saved:</h2>
+      <h2><%= pluralize(@contract_employee.errors.count + @employee.errors.count, "error") %> prohibited this contract_employee from being saved:</h2>
 
       <ul>
-      <% @seasonal.errors.full_messages.each do |message| %>
+      <% @contract_employee.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -56,30 +56,18 @@
       </div>
    <% end %>
 
-
   <div class="field">
-    <%= f.label :seasonYear %><br>
-    <%= f.select :seasonYear, (Time.zone.now.year - 100)..(Time.zone.now.year + 1) %>
-    <% @seasonal.errors[:seasonYear].each do |e|%>
-        <%= e%>
-    <% end %>
+    <%= f.label :contractStartDate %><br>
+    <%= f.date_select :contractStartDate %>
   </div>
-  <% if isAdmin %>
-    <div class="field">
-      <%= f.label :season %><br>
-      <%= f.select :season, options_for_select(['Winter','Spring','Summer','fall'])%>
-      <% @seasonal.errors[:season].each do |e|%>
-        <%= e%>
-      <% end %>
-    </div>
-    <div class="field">
-      <%= f.label :piecePay %><br>
-      <%= f.text_field :piecePay %>
-      <% @seasonal.errors[:piecePay].each do |e|%>
-        <%= e%>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.label :contractStopDate %><br>
+    <%= f.date_select :contractStopDate, :include_blank => true %>
+  </div>
+  <div class="field">
+    <%= f.label :fixedContractAmount %><br>
+    <%= f.text_field :fixedContractAmount %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

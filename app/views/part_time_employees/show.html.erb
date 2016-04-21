@@ -1,19 +1,45 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>Company Name:</strong>
+  <%= @part_time_employee.employee.company.name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @part_time_employee.employee.lastName %>
+</p>
+<p>
+  <strong>First Name:</strong>
+  <%= @part_time_employee.employee.firstName %>
+</p>
+<p>
+  <strong>Social Insurance Number:</strong>
+  <%= @part_time_employee.employee.sin %>
+</p>
+<p>
+  <strong>Date of Birth</strong>
+  <%= @part_time_employee.employee.dateOfBirth %>
+</p>
 
 <p>
   <strong>Dateofhire:</strong>
   <%= @part_time_employee.dateOfHire %>
 </p>
+<% isAdmin %>
+  <p>
+    <strong>Dateoftermination:</strong>
+    <%= @part_time_employee.dateOfTermination %>
+  </p>
 
-<p>
-  <strong>Dateoftermination:</strong>
-  <%= @part_time_employee.dateOfTermination %>
-</p>
+  <p>
+    <strong>Hourlyrate:</strong>
+    <%= @part_time_employee.hourlyRate %>
+  </p>
 
-<p>
-  <strong>Hourlyrate:</strong>
-  <%= @part_time_employee.hourlyRate %>
-</p>
+  <p>
+    <strong>Reason for Leaving:</strong>
+    <%= @part_time_employee.employee.reasonForLeaving %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_part_time_employee_path(@part_time_employee) %> |
 <%= link_to 'Back', part_time_employees_path %>

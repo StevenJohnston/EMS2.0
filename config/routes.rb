@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contract_employees
   resources :seasonals
   resources :seasonals
   resources :part_time_employees

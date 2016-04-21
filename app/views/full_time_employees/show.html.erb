@@ -24,23 +24,22 @@
   <strong>Dateofhire:</strong>
   <%= @full_time_employee.dateOfHire %>
 </p>
+<% isAdmin %>
+  <p>
+    <strong>Dateoftermination:</strong>
+    <%= @full_time_employee.dateofTermination %>
+  </p>
 
-<p>
-  <strong>Dateoftermination:</strong>
-  <%= @full_time_employee.dateofTermination %>
-</p>
+  <p>
+    <strong>Salary:</strong>
+    <%= @full_time_employee.salary %>
+  </p>
 
-<p>
-  <strong>Salary:</strong>
-  <%= @full_time_employee.salary %>
-</p>
-
-<p>
-  <strong>Reason for Leaving:</strong>
-  <%= @full_time_employee.employee.reasonForLeaving %>
-</p>
-
-
+  <p>
+    <strong>Reason for Leaving:</strong>
+    <%= @full_time_employee.employee.reasonForLeaving %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_full_time_employee_path(@full_time_employee) %> |
 <%= link_to 'Back', full_time_employees_path %>

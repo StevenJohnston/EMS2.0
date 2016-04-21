@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contractStartDate: 2016-04-21
+  contractStopDate: 2016-04-21
+  fixedContractAmount: 9.99
+  employee_id: 
+  verified: false
+
+two:
+  contractStartDate: 2016-04-21
+  contractStopDate: 2016-04-21
+  fixedContractAmount: 9.99
+  employee_id: 
+  verified: false

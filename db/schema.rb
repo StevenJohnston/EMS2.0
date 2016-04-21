@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421071339) do
+ActiveRecord::Schema.define(version: 20160421223456) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 20160421071339) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  create_table "contract_employees", force: :cascade do |t|
+    t.date     "contractStartDate"
+    t.date     "contractStopDate"
+    t.decimal  "fixedContractAmount",             precision: 10
+    t.integer  "employee_id",           limit: 4
+    t.boolean  "verified"
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.integer  "contract_employees_id", limit: 4
+  end
+
+  add_index "contract_employees", ["contract_employees_id"], name: "index_contract_employees_on_contract_employees_id", using: :btree
+  add_index "contract_employees", ["employee_id"], name: "index_contract_employees_on_employee_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.string   "lastName",         limit: 255
@@ -112,6 +126,7 @@ ActiveRecord::Schema.define(version: 20160421071339) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_foreign_key "contract_employees", "employees"
   add_foreign_key "employees", "companies"
   add_foreign_key "full_time_employees", "employees"
   add_foreign_key "seasonals", "employees"

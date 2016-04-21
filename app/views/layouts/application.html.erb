@@ -15,6 +15,11 @@
         <%= link_to "Create Account", signup_path %>
         <%= link_to "Companies", companies_path%>
         <%= link_to "Full Time Employees", full_time_employees_path %>
+        <%= link_to "Part Time Employees", part_time_employees_path %>
+        <%= link_to "Seasonal Employees", seasonals_path %>
+        <% if isAdmin %>
+          <%= link_to "contract Employees", contract_employees_path %>
+        <% end %>
       </div>
     <% elsif (!current_page? (login_path)) && (!current_page? ('/')) %>
       <%= link_to "Log In", login_path %>
