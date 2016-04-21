@@ -1,0 +1,54 @@
+<%= form_for(@time_card) do |f| %>
+  <% if @time_card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@time_card.errors.count, "error") %> prohibited this time_card from being saved:</h2>
+
+      <ul>
+      <% @time_card.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h2><%= @employee.company.name%></h2>
+  <h2><%= @employee.firstName + " " + @employee.lastName %></h2>
+  <div class="field">
+    <%= f.label :dateOf %><br>
+    <%= f.date_select :dateOf, { :include_blank => false, :start_year => 1916, :selected => 2016 }  %>
+  </div>
+  <div class="field">
+    <%= f.label :sunday %><br>
+    <%= f.text_field :sunday %>
+  </div>
+  <div class="field">
+    <%= f.label :monday %><br>
+    <%= f.text_field :monday %>
+  </div>
+  <div class="field">
+    <%= f.label :tuesday %><br>
+    <%= f.text_field :tuesday %>
+  </div>
+  <div class="field">
+    <%= f.label :wednesday %><br>
+    <%= f.text_field :wednesday %>
+  </div>
+  <div class="field">
+    <%= f.label :thursday %><br>
+    <%= f.text_field :thursday %>
+  </div>
+  <div class="field">
+    <%= f.label :friday %><br>
+    <%= f.text_field :friday %>
+  </div>
+  <div class="field">
+    <%= f.label :saturday %><br>
+    <%= f.text_field :saturday %>
+  </div>
+  <div class="field" style="display: none;">
+    <%= f.label :employee_id %><br>
+    <%= f.text_field :employee_id, :value => @time_card.employee_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

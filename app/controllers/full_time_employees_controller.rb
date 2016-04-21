@@ -4,7 +4,11 @@ class FullTimeEmployeesController < ApplicationController
   # GET /full_time_employees
   # GET /full_time_employees.json
   def index
-    @full_time_employees = FullTimeEmployee.all
+    if isAdmin
+      @full_time_employees = FullTimeEmployee.all
+    else
+      @full_time_employees = FullTimeEmployee.where('dateofTermination >= ? OR dateofTermination is null', DateTime.now)
+    end
   end
 
   # GET /full_time_employees/1
@@ -30,8 +34,10 @@ class FullTimeEmployeesController < ApplicationController
   def create
 
     @employee = Employee.new(employee_params)
-
     @full_time_employee = FullTimeEmployee.new(full_time_employee_params)
+    if isAdmin
+      @full_time_employee.verified = 1
+    end
     respond_to do |format|
         @full_time_employee.valid?
         if @employee.valid? && @full_time_employee.valid?
@@ -57,24 +63,56 @@ class FullTimeEmployeesController < ApplicationController
   # PATCH/PUT /full_time_employees/1
   # PATCH/PUT /full_time_employees/1.json
   def update
-    @full_time_employee = FullTimeEmployee.find(params[:id])
-    @employee = @full_time_employee.employee
+    if isAdmin
+      @full_time_employee = FullTimeEmployee.find(params[:id])
+      @employee = @full_time_employee.employee
 
-    @full_time_employee.assign_attributes(full_time_employee_params)
-    @employee.assign_attributes(employee_params)
-    respond_to do |format|
-      @full_time_employee.valid?
-      if @employee.valid? && @full_time_employee.valid?
-        @employee.update(employee_params)
-        @full_time_employee.update(full_time_employee_params)
-        format.html { redirect_to @full_time_employee, notice: 'Full time employee was successfully updated.' }
-        format.json { render :show, status: :ok, location: @full_time_employee }
-      else
-          format.html { render :new }
-          format.json { render json: @employee.errors, status: :unprocessable_entity }
+      @full_time_employee.assign_attributes(full_time_employee_params)
+      @employee.assign_attributes(employee_params)
+      respond_to do |format|
+        @full_time_employee.valid?
+        if @employee.valid? && @full_time_employee.valid?
+          @employee.update(employee_params)
+          @full_time_employee.update(full_time_employee_params)
+          format.html { redirect_to @full_time_employee, notice: 'Full time employee was successfully updated.' }
+          format.json { render :show, status: :ok, location: @full_time_employee }
+        else
+            format.html { render :new }
+            format.json { render json: @employee.errors, status: :unprocessable_entity }
 
-          #format.html { render :new }
-          format.json { render json: @full_time_employee.errors, status: :unprocessable_entity }
+            #format.html { render :new }
+            format.json { render json: @full_time_employee.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @employee = Employee.new(employee_params)
+      @full_time_employee = FullTimeEmployee.new(full_time_employee_params)
+      @oldFullTime = FullTimeEmployee.find(params[:id])
+      @oldFullTimeId = @oldFullTime.full_time_employees_id
+      if @oldFullTimeId == nil
+        @oldFullTimeId = @oldFullTime.id
+      end
+      @full_time_employee.full_time_employees_id = @oldFullTimeId
+      @full_time_employee.salary = FullTimeEmployee.find(params[:id]).salary
+
+      respond_to do |format|
+          @full_time_employee.valid?
+          if @employee.valid? && @full_time_employee.valid?
+              if @employee.save
+                  @full_time_employee.employee = Employee.find(@employee.id)
+                format.json { render :show, status: :created, location: @employee }
+                  if @full_time_employee.save
+                    format.html { redirect_to @full_time_employee, notice: 'Full time employee was successfully created.' }
+                    format.json { render :show, status: :created, location: @full_time_employee }
+                  end
+              end
+          else
+              format.html { render :new }
+              format.json { render json: @employee.errors, status: :unprocessable_entity }
+
+              #format.html { render :new }
+              format.json { render json: @full_time_employee.errors, status: :unprocessable_entity }
+          end
       end
     end
   end
@@ -103,4 +141,13 @@ class FullTimeEmployeesController < ApplicationController
     def employee_params
       params.require(:employee).permit(:lastName, :firstName, :sin, :dateOfBirth, :reasonForLeaving, :company_id)
     end
+
+    def isAdmin()
+      return current_user && current_user.userType == "Admin"
+    end
+
+    def isGeneral()
+      return current_user && current_user.userType == "General"
+    end
+    helper_method :isAdmin
 end

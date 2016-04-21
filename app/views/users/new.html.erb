@@ -1,7 +1,3 @@
 <h1>New User</h1>
-<% if current_user && current_user.userType == 'admin'%>
-  <%= render 'form' %>
-<% else %>
-
-<% end %>
+<%= render 'form' %>
 <%= link_to 'Back', users_path %>

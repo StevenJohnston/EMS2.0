@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Time Cards</h1>
+<%= fields_for(@employee) do |u| %>
+  <h2><%= @employee.company.name %></h2>
+  <h2><%= @employee.firstName + " " + @employee.lastName%></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Week Of</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @time_cards.each do |time_card| %>
+      <tr>
+        <td><%= time_card.dateOf %></td>
+        <td><%= link_to 'Show', time_card %></td>
+        <td><%= link_to 'Edit', edit_time_card_path(time_card) %></td>
+        <td><%= link_to 'Destroy', time_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Time card', :controller => :time_cards, :action => :new, :id => @employee.id %>
+<% end %>

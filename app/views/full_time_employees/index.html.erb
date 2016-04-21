@@ -9,9 +9,15 @@
       <th>First Name</th>
 
       <th>Dateofhire</th>
-      <th>Dateoftermination</th>
-      <th>Salary</th>
+      <% if isAdmin %>
+        <th>Dateoftermination</th>
+        <th>Salary</th>
+      <% end %>
+      <th>Complete</th>
+      <th>Time Card</th>
       <th colspan="3"></th>
+
+
     </tr>
   </thead>
 
@@ -24,12 +30,16 @@
         <td><%= full_time_employee.employee.firstName %></td>
 
         <td><%= full_time_employee.dateOfHire %></td>
-        <td><%= full_time_employee.dateofTermination %></td>
-        <td><%= full_time_employee.salary %></td>
-
+        <% if isAdmin %>
+          <td><%= full_time_employee.dateofTermination %></td>
+          <td><%= full_time_employee.salary %></td>
+        <% end %>
+        <td><input type="checkbox" disabled <%= full_time_employee.verified ? 'checked': '' %>></td>
+        <td><%= link_to 'Time card', :controller => :time_cards, :action => :index, :id => full_time_employee.employee.id %></td>
         <td><%= link_to 'Show', full_time_employee %></td>
         <td><%= link_to 'Edit', edit_full_time_employee_path(full_time_employee) %></td>
         <td><%= link_to 'Destroy', full_time_employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>

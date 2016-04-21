@@ -14,6 +14,7 @@
       <div id="Tables">
         <%= link_to "Create Account", signup_path %>
         <%= link_to "Companies", companies_path%>
+        <%= link_to "Full Time Employees", full_time_employees_path %>
       </div>
     <% elsif (!current_page? (login_path)) && (!current_page? ('/')) %>
       <%= link_to "Log In", login_path %>

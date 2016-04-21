@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Time Cards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dateof</th>
+      <th>Sunday</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @time_cards.each do |time_card| %>
+      <tr>
+        <td><%= time_card.dateOf %></td>
+        <td><%= time_card.sunday %></td>
+        <td><%= time_card.monday %></td>
+        <td><%= time_card.tuesday %></td>
+        <td><%= time_card.wednesday %></td>
+        <td><%= time_card.thursday %></td>
+        <td><%= time_card.friday %></td>
+        <td><%= time_card.saturday %></td>
+        <td><%= link_to 'Show', time_card %></td>
+        <td><%= link_to 'Edit', edit_time_card_path(time_card) %></td>
+        <td><%= link_to 'Destroy', time_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if isGeneral %>
+  <%= link_to 'Add New Time Card', :controller => :time_cards, :action => :new, :id => @employee.id %>
+<% end %>
+<%= link_to 'Back', time_cards_path %>

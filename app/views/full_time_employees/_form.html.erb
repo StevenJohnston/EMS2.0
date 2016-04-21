@@ -64,20 +64,22 @@
         <%= e%>
     <% end %>
   </div>
-  <div class="field">
-    <%= f.label :dateofTermination %><br>
-    <%= f.date_select :dateofTermination %>
-    <% @full_time_employee.errors[:dateofTermination].each do |e|%>
+  <% if isAdmin %>
+    <div class="field">
+      <%= f.label :dateofTermination %><br>
+      <%= f.date_select :dateofTermination, :include_blank => true %>
+      <% @full_time_employee.errors[:dateofTermination].each do |e|%>
         <%= e%>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :salary %><br>
-    <%= f.text_field :salary %>
-    <% @full_time_employee.errors[:salary].each do |e|%>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :salary %><br>
+      <%= f.text_field :salary %>
+      <% @full_time_employee.errors[:salary].each do |e|%>
         <%= e%>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

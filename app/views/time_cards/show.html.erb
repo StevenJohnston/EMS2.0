@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dateof:</strong>
+  <%= @time_card.dateOf %>
+</p>
+
+<p>
+  <strong>Sunday:</strong>
+  <%= @time_card.sunday %>
+</p>
+
+<p>
+  <strong>Monday:</strong>
+  <%= @time_card.monday %>
+</p>
+
+<p>
+  <strong>Tuesday:</strong>
+  <%= @time_card.tuesday %>
+</p>
+
+<p>
+  <strong>Wednesday:</strong>
+  <%= @time_card.wednesday %>
+</p>
+
+<p>
+  <strong>Thursday:</strong>
+  <%= @time_card.thursday %>
+</p>
+
+<p>
+  <strong>Friday:</strong>
+  <%= @time_card.friday %>
+</p>
+
+<p>
+  <strong>Saturday:</strong>
+  <%= @time_card.saturday %>
+</p>
+
+<%= link_to 'Edit', edit_time_card_path(@time_card) %> |
+<%= link_to 'Back', time_cards_path %>

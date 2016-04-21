@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  resources :time_cards
   resources :full_time_employees
   resources :employees
   resources :companies
 
-  
+
 
   get 'sessions/new'
   get 'sessions/create'

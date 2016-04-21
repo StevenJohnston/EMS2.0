@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dateOf: 2016-04-20
+  sunday: 9.99
+  monday: 9.99
+  tuesday: 9.99
+  wednesday: 9.99
+  thursday: 9.99
+  friday: 9.99
+  saturday: 9.99
+
+two:
+  dateOf: 2016-04-20
+  sunday: 9.99
+  monday: 9.99
+  tuesday: 9.99
+  wednesday: 9.99
+  thursday: 9.99
+  friday: 9.99
+  saturday: 9.99
