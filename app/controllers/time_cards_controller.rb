@@ -32,6 +32,7 @@ class TimeCardsController < ApplicationController
 
   # GET /time_cards/1/edit
   def edit
+
   end
 
   # POST /time_cards

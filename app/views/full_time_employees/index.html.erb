@@ -35,7 +35,11 @@
           <td><%= full_time_employee.salary %></td>
         <% end %>
         <td><input type="checkbox" disabled <%= full_time_employee.verified ? 'checked': '' %>></td>
+        <% if full_time_employee.full_time_employees_id == nil%>
         <td><%= link_to 'Time card', :controller => :time_cards, :action => :index, :id => full_time_employee.employee.id %></td>
+        <% else %>
+        <td></td>
+        <% end %>
         <td><%= link_to 'Show', full_time_employee %></td>
         <td><%= link_to 'Edit', edit_full_time_employee_path(full_time_employee) %></td>
         <td><%= link_to 'Destroy', full_time_employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>

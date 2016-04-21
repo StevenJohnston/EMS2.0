@@ -29,8 +29,10 @@
         <td><%= time_card.friday %></td>
         <td><%= time_card.saturday %></td>
         <td><%= link_to 'Show', time_card %></td>
-        <td><%= link_to 'Edit', edit_time_card_path(time_card) %></td>
-        <td><%= link_to 'Destroy', time_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if isGeneral %>
+          <td><%= link_to 'Edit', edit_time_card_path(time_card) %></td>
+          <td><%= link_to 'Destroy', time_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :full_time_employees
   resources :employees
   resources :companies
-
+  resources :homes
 
 
   get 'sessions/new'

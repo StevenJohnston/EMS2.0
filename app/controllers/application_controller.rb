@@ -7,5 +7,15 @@ class ApplicationController < ActionController::Base
   def current_user
     User.where(id: session[:user_id]).first
   end
+
   helper_method :current_user
+
+  def isAdmin
+    return current_user && current_user.userType == "Admin"
+  end
+
+  def isGeneral
+    return current_user && current_user.userType == "General"
+  end
+  helper_method :isAdmin
 end

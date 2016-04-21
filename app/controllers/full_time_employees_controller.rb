@@ -34,6 +34,7 @@ class FullTimeEmployeesController < ApplicationController
   def create
 
     @employee = Employee.new(employee_params)
+    @employee.editor_id = current_user.id
     @full_time_employee = FullTimeEmployee.new(full_time_employee_params)
     if isAdmin
       @full_time_employee.verified = 1
@@ -72,8 +73,33 @@ class FullTimeEmployeesController < ApplicationController
       respond_to do |format|
         @full_time_employee.valid?
         if @employee.valid? && @full_time_employee.valid?
-          @employee.update(employee_params)
-          @full_time_employee.update(full_time_employee_params)
+          @employee.editor_id = current_user.id
+          if @full_time_employee.full_time_employees_id != nil
+            @realFulltime = FullTimeEmployee.find(@full_time_employee.full_time_employees_id)
+            @realEmployee = Employee.find(@realFulltime.employee_id)
+
+            @realFulltime.dateOfHire = @full_time_employee.dateOfHire
+            @realFulltime.dateofTermination = @full_time_employee.dateofTermination
+            @realFulltime.salary = @full_time_employee.salary
+            @realFulltime.verified = 1
+
+            @realEmployee.lastName = @employee.lastName
+            @realEmployee.firstName = @employee.firstName
+            @realEmployee.sin = @employee.sin
+            @realEmployee.dateOfBirth = @employee.dateOfBirth
+            @realEmployee.reasonForLeaving = @employee.reasonForLeaving
+            @realEmployee.company_id = @employee.company_id
+            @realEmployee.editor_id = current_user.id
+
+            @realEmployee.save
+            @realFulltime.save
+
+            @full_time_employee.destroy
+            @employee.destroy
+          else
+            @employee.save
+            @full_time_employee.save
+          end
           format.html { redirect_to @full_time_employee, notice: 'Full time employee was successfully updated.' }
           format.json { render :show, status: :ok, location: @full_time_employee }
         else
@@ -86,6 +112,8 @@ class FullTimeEmployeesController < ApplicationController
       end
     else
       @employee = Employee.new(employee_params)
+
+      @employee.editor_id = current_user.id
       @full_time_employee = FullTimeEmployee.new(full_time_employee_params)
       @oldFullTime = FullTimeEmployee.find(params[:id])
       @oldFullTimeId = @oldFullTime.full_time_employees_id
