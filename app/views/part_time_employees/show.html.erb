@@ -24,7 +24,7 @@
   <strong>Dateofhire:</strong>
   <%= @part_time_employee.dateOfHire %>
 </p>
-<% isAdmin %>
+<% if isAdmin %>
   <p>
     <strong>Dateoftermination:</strong>
     <%= @part_time_employee.dateOfTermination %>

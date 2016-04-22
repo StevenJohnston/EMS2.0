@@ -1,4 +1,21 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <strong>Company Name:</strong>
+  <%= @seasonal.employee.company.name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @seasonal.employee.lastName %>
+</p>
+<p>
+  <strong>First Name:</strong>
+  <%= @seasonal.employee.firstName %>
+</p>
+<p>
+  <strong>Social Insurance Number:</strong>
+  <%= @seasonal.employee.sin %>
+</p>
 
 <p>
   <strong>Season:</strong>
@@ -9,21 +26,16 @@
   <strong>Seasonyear:</strong>
   <%= @seasonal.seasonYear %>
 </p>
+<% if isAdmin %>
+  <p>
+    <strong>Piecepay:</strong>
+    <%= @seasonal.piecePay %>
+  </p>
 
-<p>
-  <strong>Piecepay:</strong>
-  <%= @seasonal.piecePay %>
-</p>
-
-<p>
-  <strong>Employee:</strong>
-  <%= @seasonal.employee %>
-</p>
-
-<p>
-  <strong>Verified:</strong>
-  <%= @seasonal.verified %>
-</p>
-
+  <p>
+    <strong>Reason for Leaving:</strong>
+    <%= @seasonal.employee.reasonForLeaving %>
+  </p>
+<% end %>
 <%= link_to 'Edit', edit_seasonal_path(@seasonal) %> |
 <%= link_to 'Back', seasonals_path %>
