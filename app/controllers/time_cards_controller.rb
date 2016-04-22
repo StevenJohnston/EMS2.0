@@ -1,3 +1,6 @@
+#Group: silicon Central
+#Assignment: EMS PSS
+#Date: 4/21/2016
 class TimeCardsController < ApplicationController
   before_action :set_time_card, only: [:show, :edit, :update, :destroy]
 

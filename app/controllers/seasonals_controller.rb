@@ -1,3 +1,6 @@
+#Group: silicon Central
+#Assignment: EMS PSS
+#Date: 4/21/2016
 class SeasonalsController < ApplicationController
   before_action :set_seasonal, only: [:show, :edit, :update, :destroy]
 
@@ -6,8 +9,10 @@ class SeasonalsController < ApplicationController
   def index
     if isAdmin
       @seasonals = Seasonal.all
-    else
+    elsif isGeneral
       @seasonals = Seasonal.where('seasonYear >= ? OR seasonYear is null', DateTime.now.year)
+    else
+      redirect_to :controller => 'sessions', :action => 'new'
     end
   end
 

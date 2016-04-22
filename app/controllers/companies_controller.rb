@@ -1,15 +1,25 @@
+#Group: silicon Central
+#Assignment: EMS PSS
+#Date: 4/21/2016
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    if isAdmin
+      @companies = Company.all
+    elsif isGeneral
+      @companies = Company.all
+    else
+      redirect_to :controller => 'sessions', :action => 'new'
+    end
   end
 
   # GET /companies/1
   # GET /companies/1.json
   def show
+
   end
 
   # GET /companies/new
@@ -59,6 +69,10 @@ class CompaniesController < ApplicationController
       format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def seniority
+
   end
 
   private

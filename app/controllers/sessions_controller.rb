@@ -1,3 +1,6 @@
+#Group: silicon Central
+#Assignment: EMS PSS
+#Date: 4/21/2016
 class SessionsController < ApplicationController
   def new
   end

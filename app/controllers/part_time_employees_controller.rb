@@ -1,3 +1,6 @@
+#Group: silicon Central
+#Assignment: EMS PSS
+#Date: 4/21/2016
 class PartTimeEmployeesController < ApplicationController
   before_action :set_part_time_employee, only: [:show, :edit, :update, :destroy]
 
@@ -6,8 +9,10 @@ class PartTimeEmployeesController < ApplicationController
   def index
     if isAdmin
       @part_time_employees = PartTimeEmployee.all
-    else
+    elsif isGeneral
       @part_time_employees = PartTimeEmployee.where('dateofTermination >= ? OR dateofTermination is null', DateTime.now)
+    else
+      redirect_to :controller => 'sessions', :action => 'new'
     end
   end
 

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :employees
   resources :companies
   resources :homes
+  resources :seniority_report
 
+  get 'seniority_report/show'
 
   get 'sessions/new'
   get 'sessions/create'

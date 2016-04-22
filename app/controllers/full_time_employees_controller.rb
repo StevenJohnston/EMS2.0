@@ -1,3 +1,6 @@
+#Group: silicon Central
+#Assignment: EMS PSS
+#Date: 4/21/2016
 class FullTimeEmployeesController < ApplicationController
   before_action :set_full_time_employee, only: [:show, :edit, :update, :destroy]
 
@@ -6,8 +9,10 @@ class FullTimeEmployeesController < ApplicationController
   def index
     if isAdmin
       @full_time_employees = FullTimeEmployee.all
-    else
+    elsif isGeneral
       @full_time_employees = FullTimeEmployee.where('dateofTermination >= ? OR dateofTermination is null', DateTime.now)
+    else
+      redirect_to :controller => 'sessions', :action => 'new'
     end
   end
 

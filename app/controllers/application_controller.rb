@@ -1,3 +1,7 @@
+#Group: silicon Central
+#Assignment: EMS PSS
+#Date: 4/21/2016
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

@@ -7,23 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="user_header">
-    <% if current_user %>
-      Logged in as <%= current_user.email %>.
-      <%= link_to "Log Out", logout_path %>
+  <div id='cssmenu'>
+    <ul>
       <div id="Tables">
-        <%= link_to "Create Account", signup_path %>
-        <%= link_to "Companies", companies_path%>
-        <%= link_to "Full Time Employees", full_time_employees_path %>
-        <%= link_to "Part Time Employees", part_time_employees_path %>
-        <%= link_to "Seasonal Employees", seasonals_path %>
+        <% if current_user %>
+        <li><a href=""> <%= current_user.name %></a></li>
+        <li><%= link_to "Create Account", signup_path %></li>
+        <li><%= link_to "Companies", companies_path %></li>
+        <li><%= link_to "Full Time", full_time_employees_path %></li>
+        <li><%= link_to "Part Time", part_time_employees_path %></li>
+        <li><%= link_to "Seasonal", seasonals_path %></li>
         <% if isAdmin %>
-          <%= link_to "contract Employees", contract_employees_path %>
+          <li><%= link_to "contract Employees", contract_employees_path %></li>
         <% end %>
+        <li><%= link_to "seniority reports", seniority_report_index_path %></li>
+        <% elsif (!current_page? (login_path)) && (!current_page? ('/')) %>
+          <li><%= link_to "Log In", login_path %></li>
+        <% end %>
+
+        <li><%= link_to "Log Out", logout_path %></li>
       </div>
-    <% elsif (!current_page? (login_path)) && (!current_page? ('/')) %>
-      <%= link_to "Log In", login_path %>
-    <% end %>
+
+    </ul>
   </div>
   <% flash.each do |key, value| %>
     <%= content_tag(:div, class: "alert alert-#{key}") do %>
@@ -31,5 +36,7 @@
     <% end %>
   <% end %>
   <%= yield %>
+
+
 </body>
 </html>

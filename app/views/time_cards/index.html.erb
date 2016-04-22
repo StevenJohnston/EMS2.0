@@ -13,7 +13,11 @@
       <th>Thursday</th>
       <th>Friday</th>
       <th>Saturday</th>
-      <th colspan="3"></th>
+      <% if isGeneral %>
+        <th colspan="3"></th>
+      <% else %>
+        <th colspan="1"></th>
+      <% end %>
     </tr>
   </thead>
 

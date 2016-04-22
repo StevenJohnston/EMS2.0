@@ -1,4 +1,4 @@
-<%= form_for(@full_time_employee) do |f| %>
+<%= form_for @full_time_employee, :html => {:class => 'form-style-7'} do |f| %>
   <% if @full_time_employee.errors.any? || @employee.errors.any?%>
     <div id="error_explanation">
       <h2><%= pluralize(@full_time_employee.errors.count + @employee.errors.count, "error") %> prohibited this full_time_employee from being saved:</h2>
