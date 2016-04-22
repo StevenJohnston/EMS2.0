@@ -1,10 +1,26 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>Company Name:</strong>
+  <%= @contract_employee.employee.company.name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @contract_employee.employee.lastName %>
+</p>
+<p>
+  <strong>First Name:</strong>
+  <%= @contract_employee.employee.firstName %>
+</p>
+<p>
+  <strong>Social Insurance Number:</strong>
+  <%= @contract_employee.employee.sin %>
+</p>
 
 <p>
   <strong>Contractstartdate:</strong>
   <%= @contract_employee.contractStartDate %>
 </p>
-
+<% if isAdmin %>
 <p>
   <strong>Contractstopdate:</strong>
   <%= @contract_employee.contractStopDate %>
@@ -14,16 +30,7 @@
   <strong>Fixedcontractamount:</strong>
   <%= @contract_employee.fixedContractAmount %>
 </p>
-
-<p>
-  <strong>Employee:</strong>
-  <%= @contract_employee.employee %>
-</p>
-
-<p>
-  <strong>Verified:</strong>
-  <%= @contract_employee.verified %>
-</p>
+<% end %>
 
 <%= link_to 'Edit', edit_contract_employee_path(@contract_employee) %> |
 <%= link_to 'Back', contract_employees_path %>
